@@ -1,0 +1,22 @@
+{
+  "name": "notification-basis",
+  "version": "0.0.1",
+  "description": "Simple notifications component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sergemazille/notification-basis.git"
+  },
+  "keywords": [
+    "notification"
+  ],
+  "author": "Serge Mazille",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergemazille/notification-basis/issues"
+  },
+  "homepage": "https://github.com/sergemazille/notification-basis#readme"
+}
