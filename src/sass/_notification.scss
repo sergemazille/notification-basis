@@ -1,0 +1,119 @@
+// notification core
+// =================
+.notifications {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: calc(var(--overlay-z-index, 10) + 2);
+  top: var(--notifications-container-top, 0);
+  left: 0;
+
+  width: calc(100% - (var(--notifications-container-padding, 12px) * 2));
+  padding: var(--notifications-container-padding, 12px);
+
+  pointer-events: none; // because element needs to be on high z-index and would otherwise intercept clicks
+}
+
+.notification {
+  display: none;
+  visibility: hidden;
+  position: relative;
+
+  pointer-events: auto; // override parent's behaviour
+
+  &.is-visible {
+    display: block;
+    visibility: visible;
+  }
+}
+
+
+// notification modifiers
+// ======================
+.notification {
+
+  // global
+  // ======
+
+  // change default core attributes when there is a modifier
+  &[class*='--'] {
+    display: block;
+    visibility: visible;
+  }
+
+
+  // mixins (have to be declared before being used)
+  // ==============================================
+
+  // position
+  @mixin position($position: 'left') {
+
+    &.--width-auto {
+        // positioning
+        align-self: flex-start;
+        @if $position == 'right' { align-self: flex-end; } // override default
+    }
+
+    &.is-visible {
+        #{$position}: 0;
+    }
+  }
+
+  // slide
+  @mixin slide($position: 'left') {
+
+    #{$position}: calc(-100% - var(--notifications-container-padding, 12px));
+
+    transition: all var(--notification-transition-duration, .3s) var(--notification-transition-timing-function, ease-in-out);
+
+    &.is-visible {
+        #{$position}: 0;
+        transition: all var(--notification-transition-duration, .3s) var(--notification-transition-timing-function, ease-in-out);
+    }
+  }
+
+
+  // positions
+  // =========
+
+  &.--width-auto {
+    align-self: flex-start;
+  }
+
+  &.--position-left {
+    @include position('left');
+  }
+
+  &.--position-right {
+    @include position('right');
+  }
+
+
+  // transitions
+  // ===========
+
+  // slide transition builds upon position modifier
+  &.--transition-slide {
+
+    // if position is not specified or is left
+    &.--position-left, &:not([class*='--position']) {
+      @include slide('left');
+    }
+
+    // else for positioning on the right hand side
+    &.--position-right {
+      @include slide('right');
+    }
+  }
+
+  // fade transition
+  &.--transition-fade {
+    opacity: 0;
+    transition: all var(--notification-transition-duration, .3s) var(--notification-transition-timing-function, ease-in-out);
+
+    &.is-visible {
+      opacity: var(--notification-opacity, 1);
+      transition: all var(--notification-transition-duration, .3s) var(--notification-transition-timing-function, ease-in-out);
+    }
+  }
+}

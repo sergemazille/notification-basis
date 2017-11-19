@@ -1,0 +1,20 @@
+.notification {
+    --notification-opacity: .95;
+    padding: .5rem;
+    margin-bottom: .5rem;
+}
+
+.notification.success {
+    color: #fff;
+    background: #2da049;
+}
+
+.notification.warning {
+    color: #fff;
+    background: #cd8e35;
+}
+
+.notification.error {
+    color: #fff;
+    background: #ae3b3f;
+}

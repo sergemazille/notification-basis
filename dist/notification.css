@@ -1,0 +1,66 @@
+.notifications {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: calc(var(--overlay-z-index, 10) + 2);
+    top: var(--notifications-container-top, 0);
+    left: 0;
+    width: calc(100% - (var(--notifications-container-padding, 12px) * 2));
+    padding: var(--notifications-container-padding, 12px);
+    pointer-events: none;
+}
+
+.notification {
+    display: none;
+    visibility: hidden;
+    position: relative;
+    pointer-events: auto;
+}
+.notification.is-visible {
+    display: block;
+    visibility: visible;
+}
+
+.notification[class*='--'] {
+    display: block;
+    visibility: visible;
+}
+.notification.--width-auto {
+    align-self: flex-start;
+}
+.notification.--position-left.--width-auto {
+    align-self: flex-start;
+}
+.notification.--position-left.is-visible {
+    left: 0;
+}
+.notification.--position-right.--width-auto {
+    align-self: flex-end;
+}
+.notification.--position-right.is-visible {
+    right: 0;
+}
+.notification.--transition-slide.--position-left, .notification.--transition-slide:not([class*='--position']) {
+    left: calc(-100% - var(--notifications-container-padding, 12px));
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
+.notification.--transition-slide.--position-left.is-visible, .notification.--transition-slide:not([class*='--position']).is-visible {
+    left: 0;
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
+.notification.--transition-slide.--position-right {
+    right: calc(-100% - var(--notifications-container-padding, 12px));
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
+.notification.--transition-slide.--position-right.is-visible {
+    right: 0;
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
+.notification.--transition-fade {
+    opacity: 0;
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
+.notification.--transition-fade.is-visible {
+    opacity: var(--notification-opacity, 1);
+    transition: all var(--notification-transition-duration, 0.3s) var(--notification-transition-timing-function, ease-in-out);
+}
