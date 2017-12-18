@@ -1,6 +1,6 @@
 {
   "name": "notification-basis",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Simple notifications component",
   "main": "index.js",
   "scripts": {
