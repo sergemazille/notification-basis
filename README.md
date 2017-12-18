@@ -4,7 +4,6 @@ Simple notifications component
 
 Works on modern browsers only (uses es6 modules and css custom properties)
 
-
 ## Usage
 
 `notification`s are alerting components types.
@@ -122,8 +121,6 @@ Reveal Basis ships with a few transition modifiers:
 "fade" will make it fade in and out.
 
 You totally can combine all the transitions to achieve the effect you want.
-
-
 
 To create your own transition, you will have to follow some simple rules:
 
